@@ -17,3 +17,5 @@ minitorch/tensor.py
 minitorch/datasets.py
 minitorch/testing.py
 minitorch/optim.py
+tests/strategies.py
+project/math_interface.py
