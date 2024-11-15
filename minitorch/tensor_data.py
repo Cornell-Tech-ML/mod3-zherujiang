@@ -121,34 +121,22 @@ def shape_broadcast(shape1: UserShape, shape2: UserShape) -> UserShape:
 
     """
     # Task 2.2.
-    output_shape = [1] * max(len(shape1), len(shape2))
-    for i in range(len(output_shape)):
-        if i >= len(shape1):
-            output_shape[i] = shape2[i]
-        elif i >= len(shape2):
-            output_shape[i] = shape1[i]
+    output_shape = []
+    if len(shape1) > len(shape2):
+        delta = len(shape1) - len(shape2)
+        shape2 = [] + [1] * delta + list(shape2)
+    elif len(shape2) > len(shape1):
+        delta = len(shape2) - len(shape1)
+        shape1 = [] + [1] * delta + list(shape1)
+
+    for i in range(len(shape1)):
+        if shape1[i] == shape2[i]:
+            output_shape.append(shape1[i])
         else:
-            if shape1[i] == shape2[i] or shape1[i] == 1 or shape2[i] == 1:
-                output_shape[i] = max(shape1[i], shape2[i])
+            if shape1[i] == 1 or shape2[i] == 1:
+                output_shape.append(max(shape1[i], shape2[i]))
             else:
                 raise IndexingError(f"Cannot broadcast shapes {shape1} and {shape2}")
-            
-    # output_shape = []
-    # if len(shape1) > len(shape2):
-    #     delta = len(shape1) - len(shape2)
-    #     shape2 = [] + ([1] * delta) + list(shape2)
-    # elif len(shape2) > len(shape1):
-    #     delta = len(shape2) - len(shape1)
-    #     shape1 = [] + [1] * delta + list(shape1)
-
-    # for i in range(len(shape1)):
-    #     if shape1[i] == shape2[i]:
-    #         output_shape.append(shape1[i])
-    #     else:
-    #         if shape1[i] == 1 or shape2[i] == 1:
-    #             output_shape.append(max(shape1[i], shape2[i]))
-    #         else:
-    #             raise IndexingError(f"Cannot broadcast shapes {shape1} and {shape2}")
     return tuple(output_shape)
 
 
