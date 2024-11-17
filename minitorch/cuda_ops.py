@@ -334,7 +334,7 @@ def tensor_reduce(
         out_pos = cuda.blockIdx.x
         pos = cuda.threadIdx.x
 
-        # TODO: Implement for Task 3.3.
+        # Task 3.3.
         reduce_size = a_shape[reduce_dim]
         to_index(out_pos, out_shape, out_index)
 
@@ -361,6 +361,7 @@ def tensor_reduce(
         # Write back the final result
         if pos == 0:
             out_pos = index_to_position(out_index, out_strides)
+            out[out_pos] = cache[0]
 
     return jit(_reduce)  # type: ignore
 
