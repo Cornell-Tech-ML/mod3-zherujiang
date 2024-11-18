@@ -337,13 +337,13 @@ def tensor_reduce(
         # Task 3.3.
         reduce_size = a_shape[reduce_dim]
         to_index(out_pos, out_shape, out_index)
+        out_pos = index_to_position(out_index, out_strides)
 
         # Initialize shared memory
         if pos < reduce_size:
             # Copy input to shared memory
-            a_index = out_index.copy()
-            a_index[reduce_dim] = pos
-            a_pos = index_to_position(a_index, a_strides)
+            out_index[reduce_dim] = pos
+            a_pos = index_to_position(out_index, a_strides)
             cache[pos] = a_storage[a_pos]
         else:
             cache[pos] = reduce_value
@@ -361,7 +361,6 @@ def tensor_reduce(
         cuda.syncthreads()
         # Write back the final result
         if pos == 0:
-            out_pos = index_to_position(out_index, out_strides)
             out[out_pos] = cache[0]
 
     return jit(_reduce)  # type: ignore
