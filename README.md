@@ -27,10 +27,10 @@
 <img src="/assets/images/simple_loss_cpu.png" width="50%">
 <img src="/assets/images/simple_log_cpu.png" width="50%">
 
-#### Training with GPU (CudaOps)
+### Training with GPU (CudaOps)
 
-### Split Dataset
-#### Training with CPU (FastOps)
+## Split Dataset
+### Training with CPU (FastOps)
 #### Model Parameters
 * Number of points: 150
 * Size of hidden layer: 100
@@ -47,10 +47,10 @@
 <img src="/assets/images/split_loss_cpu.png" width="50%">
 <img src="/assets/images/split_log_cpu.png" width="50%">
 
-#### Training with GPU (CudaOps)
+### Training with GPU (CudaOps)
 
-### XOR Dataset
-#### Training with CPU (FastOps)
+## XOR Dataset
+### Training with CPU (FastOps)
 #### Model Parameters
 * Number of points: 150
 * Size of hidden layer: 100
@@ -66,10 +66,10 @@
 <img src="/assets/images/XoR_loss_cpu.png" width="50%">
 <img src="/assets/images/XoR_log_cpu.png" width="50%">
 
-#### Training with GPU (CudaOps)
+### Training with GPU (CudaOps)
 
-### Training Big Model - XOR Dataset
-#### Training with CPU (FastOps)
+## Training Big Model - XOR Dataset
+### Training with CPU (FastOps)
 #### Model Parameters
 * Number of points: 150
 * Size of hidden layer: 100
@@ -85,7 +85,7 @@
 <img src="/assets/images/XoR_big_loss_cpu.png" width="50%">
 <img src="/assets/images/XoR_big_log_cpu.png" width="50%">
 
-#### Training with GPU (CudaOps)
+### Training with GPU (CudaOps)
 #### Model Parameters
 * Number of points: 150
 * Size of hidden layer: 100
