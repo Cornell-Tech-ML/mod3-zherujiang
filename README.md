@@ -39,6 +39,7 @@
 * Time per epoch: 0.797s
 * Correct: 150/150
 * Loss: 1.3223
+```
 Epoch  10  loss  13.262209187553221 correct 136
 Epoch  20  loss  9.416668025095028 correct 141
 Epoch  30  loss  10.171094173141213 correct 143
@@ -90,6 +91,7 @@ Epoch  480  loss  1.4550626708868193 correct 150
 Epoch  490  loss  1.6711099939183105 correct 149
 Epoch  500  loss  1.3223574739322064 correct 150
 Time per epoch:  0.7969081153869629s
+```
 
 ## Split Dataset
 ### Training with CPU (FastOps)
@@ -122,6 +124,7 @@ Time per epoch:  0.7969081153869629s
 * Correct: 99/100
 * Loss: 1.7115
 
+```
 Epoch  10  loss  12.434918714612413 correct 96
 Epoch  20  loss  10.987760323938975 correct 96
 Epoch  30  loss  10.583358455974302 correct 96
@@ -173,6 +176,7 @@ Epoch  480  loss  1.7422895471244024 correct 100
 Epoch  490  loss  2.035818443717936 correct 100
 Epoch  500  loss  1.711487965220122 correct 99
 Time per epoch:  0.5208355765342713s
+```
 
 ## XOR Dataset
 ### Training with CPU (FastOps)
@@ -203,7 +207,7 @@ Time per epoch:  0.5208355765342713s
 * Time per epoch: 0.523s
 * Correct: 97/100
 * Loss: 4.8475
-
+```
 Epoch  10  loss  24.8519267355222 correct 88
 Epoch  20  loss  21.890465997652683 correct 88
 Epoch  30  loss  20.027433172651516 correct 88
@@ -255,6 +259,7 @@ Epoch  480  loss  6.106633519056049 correct 97
 Epoch  490  loss  6.9322980173625615 correct 97
 Epoch  500  loss  4.847461218015787 correct 97
 Time per epoch:  0.5225029020309448
+```
 
 ## Training Big Model - XOR Dataset
 ### Training with CPU (FastOps)
@@ -276,10 +281,70 @@ Time per epoch:  0.5225029020309448
 ### Training with GPU (CudaOps)
 #### Model Parameters
 * Number of points: 150
-* Size of hidden layer: 100
+* Size of hidden layer: 200
 * Learning rate: 0.05
-* Number of epochs: 300
+* Number of epochs: 500
 * Batch size: 50
+
+#### Training Result
+* Time per epoch: 0.852s
+* Correct: 150/150
+* Loss: 3.1303
+
+```
+Epoch  10  loss  42.0072417263013 correct 83
+Epoch  20  loss  18.66098879104596 correct 139
+Epoch  30  loss  15.495114987103527 correct 141
+Epoch  40  loss  14.583600550736307 correct 123
+Epoch  50  loss  13.469071855080186 correct 141
+Epoch  60  loss  8.13507504988055 correct 145
+Epoch  70  loss  14.631315111787284 correct 133
+Epoch  80  loss  9.285737692766649 correct 148
+Epoch  90  loss  7.528064236851376 correct 148
+Epoch  100  loss  9.426732082873677 correct 142
+Epoch  110  loss  9.216520583543705 correct 148
+Epoch  120  loss  7.733500254751689 correct 149
+Epoch  130  loss  5.515715741567107 correct 149
+Epoch  140  loss  7.959565329383627 correct 146
+Epoch  150  loss  6.189307372627531 correct 147
+Epoch  160  loss  6.769136499414869 correct 149
+Epoch  170  loss  5.777736022868717 correct 149
+Epoch  180  loss  6.5296982828498225 correct 150
+Epoch  190  loss  6.447426150117004 correct 149
+Epoch  200  loss  5.21692924152071 correct 150
+Epoch  210  loss  3.6286625257828153 correct 150
+Epoch  220  loss  4.10152367014177 correct 146
+Epoch  230  loss  4.001968014589115 correct 148
+Epoch  240  loss  4.299465360109346 correct 150
+Epoch  250  loss  4.158609553659765 correct 150
+Epoch  260  loss  4.059390789408351 correct 149
+Epoch  270  loss  3.8120059513064373 correct 149
+Epoch  280  loss  3.057564132479502 correct 150
+Epoch  290  loss  2.8559804006607665 correct 150
+Epoch  300  loss  6.036910569022698 correct 146
+Epoch  310  loss  3.226612234972243 correct 150
+Epoch  320  loss  4.149033898160834 correct 150
+Epoch  330  loss  3.451076342226277 correct 150
+Epoch  340  loss  3.705906543748794 correct 148
+Epoch  350  loss  1.8661210895886091 correct 150
+Epoch  360  loss  3.7310478150911326 correct 150
+Epoch  370  loss  3.238220219204665 correct 150
+Epoch  380  loss  3.303285342110425 correct 150
+Epoch  390  loss  3.6360060996646117 correct 150
+Epoch  400  loss  2.158255974289149 correct 150
+Epoch  410  loss  2.225696676221485 correct 150
+Epoch  420  loss  2.326073034048486 correct 150
+Epoch  430  loss  2.1545277388613253 correct 150
+Epoch  440  loss  2.673806788408854 correct 150
+Epoch  450  loss  3.5407404902362463 correct 150
+Epoch  460  loss  2.3494470366197784 correct 150
+Epoch  470  loss  2.587967241452305 correct 150
+Epoch  480  loss  2.146729363327209 correct 150
+Epoch  490  loss  1.5180580151845975 correct 150
+Epoch  500  loss  3.130340612629343 correct 150
+Time per epoch: 0.8519989128112793s
+```
+
 
 ### Instructions
 
