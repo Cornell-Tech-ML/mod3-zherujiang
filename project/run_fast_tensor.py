@@ -74,7 +74,7 @@ class FastTrain:
 
         # add timer
         start = time.time()
-        
+
         for epoch in range(1, max_epochs + 1):
             total_loss = 0.0
             c = list(zip(data.X, data.y))
@@ -106,7 +106,7 @@ class FastTrain:
                 y2 = minitorch.tensor(data.y)
                 correct = int(((out.detach() > 0.5) == y2).sum()[0])
                 log_fn(epoch, total_loss, correct, losses)
-        
+
         # print time per epoch
         end = time.time()
         print(f"Time per epoch: {(end - start) / max_epochs}s")
