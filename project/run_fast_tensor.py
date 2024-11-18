@@ -109,7 +109,7 @@ class FastTrain:
         
         # print time per epoch
         end = time.time()
-        print("Time per epoch: ", (end - start) / max_epochs)
+        print(f"Time per epoch: {(end - start) / max_epochs}s")
 
 
 if __name__ == "__main__":
