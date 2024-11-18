@@ -358,6 +358,7 @@ def tensor_reduce(
             cuda.syncthreads()
             stride //= 2
 
+        cuda.syncthreads()
         # Write back the final result
         if pos == 0:
             out_pos = index_to_position(out_index, out_strides)
