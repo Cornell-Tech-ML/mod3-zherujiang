@@ -358,7 +358,6 @@ def tensor_reduce(
             cuda.syncthreads()
             stride //= 2
 
-        cuda.syncthreads()
         # Write back the final result
         if pos == 0:
             out[out_pos] = cache[0]
