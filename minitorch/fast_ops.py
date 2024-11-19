@@ -30,14 +30,16 @@ Fn = TypeVar("Fn")
 
 def njit(fn: Fn, **kwargs: Any) -> Fn:
     """Wrapper for CUDA JIT compilation.
-    
+
     Args:
+    ----
         fn: Function to compile
         **kwargs: Additional arguments to pass to numba.cuda.jit
-        
+
     Returns:
+    -------
         FakeCUDAKernel: Compiled CUDA kernel
-        
+
     """
     return _njit(inline="always", **kwargs)(fn)  # type: ignore
 

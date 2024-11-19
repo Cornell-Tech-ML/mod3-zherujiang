@@ -31,28 +31,32 @@ Fn = TypeVar("Fn")
 
 def device_jit(fn: Fn, **kwargs: dict[str, Any]) -> Fn:
     """Wrapper for CUDA device JIT compilation.
-    
+
     Args:
+    ----
         fn (Fn): Function to compile
         **kwargs: Additional arguments to pass to numba.cuda.jit
-        
+
     Returns:
+    -------
         Fn: Compiled CUDA device function
-        
+
     """
     return _jit(device=True, **kwargs)(fn)  # type: ignore
 
 
 def jit(fn: Fn, **kwargs: dict[str, Any]) -> FakeCUDAKernel:
     """Wrapper for CUDA JIT compilation.
-    
+
     Args:
+    ----
         fn: Function to compile
         **kwargs: Additional arguments to pass to numba.cuda.jit
-        
+
     Returns:
+    -------
         FakeCUDAKernel: Compiled CUDA kernel
-        
+
     """
     return _jit(**kwargs)(fn)  # type: ignore
 
@@ -338,13 +342,15 @@ jit_sum_practice = cuda.jit()(_sum_practice)
 
 def sum_practice(a: Tensor) -> TensorData:
     """Practice CUDA reduction implementation using shared memory.
-    
+
     Args:
+    ----
         a (Tensor): Input tensor of shape (size,)
-        
+
     Returns:
+    -------
         TensorData: Output tensor containing partial sums
-        
+
     """
     (size,) = a.shape
     threadsperblock = THREADS_PER_BLOCK
@@ -482,14 +488,16 @@ jit_mm_practice = jit(_mm_practice)
 
 def mm_practice(a: Tensor, b: Tensor) -> TensorData:
     """Practice CUDA matrix multiplication implementation using shared memory.
-    
+
     Args:
+    ----
         a (Tensor): First input tensor of shape (size, size)
         b (Tensor): Second input tensor of shape (size, size)
-        
+
     Returns:
+    -------
         TensorData: Output tensor containing matrix multiplication result
-        
+
     """
     (size, _) = a.shape
     threadsperblock = (THREADS_PER_BLOCK, THREADS_PER_BLOCK)
