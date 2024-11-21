@@ -434,7 +434,7 @@ Size: 1024
     fast: 7.99234
     gpu: 1.00060
 ```
-<img src="/assets/images/matmul_speedtest_graph.png" width="60%">
+<img src="/assets/images/matmul_speedtest_graph.png" width="80%">
 
 # Training Log
 

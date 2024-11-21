@@ -2,12 +2,15 @@ import minitorch
 import time
 import numpy as np
 import matplotlib.pyplot as plt
+from typing import TYPE_CHECKING
 
 FastTensorBackend = minitorch.TensorBackend(minitorch.FastOps)
 GPUBackend = minitorch.TensorBackend(minitorch.CudaOps)
 
+if TYPE_CHECKING:
+    from .tensor import Tensor
 
-def run_matmul(backend: minitorch.TensorBackend, size: int = 16) -> None:
+def run_matmul(backend: minitorch.TensorBackend, size: int = 16) -> Tensor:
     """Run a matrix multiplication with the given backend."""
     batch_size = 2
 
