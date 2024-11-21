@@ -6,6 +6,27 @@
 
 * Overview: https://minitorch.github.io/module3.html
 
+# Matrix Multiplication Speedup Test
+## Runtime Output
+```
+Timing summary
+Size: 64
+    fast: 0.00312
+    gpu: 0.00568
+Size: 128
+    fast: 0.01575
+    gpu: 0.01575
+Size: 256
+    fast: 0.09136
+    gpu: 0.04460
+Size: 512
+    fast: 0.99209
+    gpu: 0.18844
+Size: 1024
+    fast: 7.99234
+    gpu: 1.00060
+```
+
 # Training Log
 
 ## Simple Dataset

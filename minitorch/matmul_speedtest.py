@@ -1,21 +1,39 @@
-import random
-from collections import defaultdict
 import minitorch
 import time
-import sys
 import numpy as np
+import matplotlib.pyplot as plt
 
 FastTensorBackend = minitorch.TensorBackend(minitorch.FastOps)
 GPUBackend = minitorch.TensorBackend(minitorch.CudaOps)
 
 
-def run_matmul(backend, size=16) -> None:
+def run_matmul(backend: minitorch.TensorBackend, size: int = 16) -> None:
     batch_size = 2
 
     x = minitorch.rand((batch_size, size, size), backend=backend)
     y = minitorch.rand((batch_size, size, size), backend=backend)
     z = x @ y
 
+def draw_plot(times: dict[int, dict[str, float]]) -> None:
+    sizes = list(times.keys())
+    graph = dict()
+    
+    # convert times dictionary to list for plotting
+    for size in sizes:
+        for backend, runtime in times[size].items():
+            if backend not in graph:
+                graph[backend] = []
+            graph[backend].append(runtime)
+    
+    # draw plot
+    plt.figure(figsize=(10, 6))
+    for backend in graph.keys():    
+        plt.plot(sizes, graph[backend], label=backend)
+    plt.title("Matrix Multiplication Speed Test")
+    plt.xlabel("Matrix Size")
+    plt.ylabel("Time (s)")
+    plt.legend()
+    plt.show()
 
 if __name__ == "__main__":
     # Warmup
@@ -52,6 +70,8 @@ if __name__ == "__main__":
     print()
     print("Timing summary")
     for size, stimes in times.items():
-        print(f"Size: {size}")
-        for b, t in stimes.items():
-            print(f"    {b}: {t:.5f}")
+        print(f"Matrix Size: {size}")
+        for backend, runtime in stimes.items():
+            print(f"    {backend}: {runtime:.5f}")
+    
+    draw_plot(times)
