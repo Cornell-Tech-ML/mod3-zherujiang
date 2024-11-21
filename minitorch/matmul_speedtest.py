@@ -8,13 +8,16 @@ GPUBackend = minitorch.TensorBackend(minitorch.CudaOps)
 
 
 def run_matmul(backend: minitorch.TensorBackend, size: int = 16) -> None:
+    """Run a matrix multiplication with the given backend."""
     batch_size = 2
 
     x = minitorch.rand((batch_size, size, size), backend=backend)
     y = minitorch.rand((batch_size, size, size), backend=backend)
     z = x @ y
+    return z
 
 def draw_plot(times: dict[int, dict[str, float]]) -> None:
+    """Draw a plot of the runtime of the different backends for different matrix sizes."""
     sizes = list(times.keys())
     graph = dict()
     
