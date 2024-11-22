@@ -1,12 +1,7 @@
 import minitorch
 import time
 import numpy as np
-import matplotlib.pyplot as plt
-from typing import TYPE_CHECKING
-
-if TYPE_CHECKING:
-    from typing import Callable, Optional
-
+# import matplotlib.pyplot as plt
 from minitorch.tensor import Tensor
 
 FastTensorBackend = minitorch.TensorBackend(minitorch.FastOps)
@@ -23,27 +18,27 @@ def run_matmul(backend: minitorch.TensorBackend, size: int = 16) -> Tensor:
     return z
 
 
-def draw_plot(times: dict[int, dict[str, float]]) -> None:
-    """Draw a plot of the runtime of the different backends for different matrix sizes."""
-    sizes = list(times.keys())
-    graph = dict()
+# def draw_plot(times: dict[int, dict[str, float]]) -> None:
+#     """Draw a plot of the runtime of the different backends for different matrix sizes."""
+#     sizes = list(times.keys())
+#     graph = dict()
 
-    # convert times dictionary to list for plotting
-    for size in sizes:
-        for backend, runtime in times[size].items():
-            if backend not in graph:
-                graph[backend] = []
-            graph[backend].append(runtime)
+#     # convert times dictionary to list for plotting
+#     for size in sizes:
+#         for backend, runtime in times[size].items():
+#             if backend not in graph:
+#                 graph[backend] = []
+#             graph[backend].append(runtime)
 
-    # draw plot
-    plt.figure(figsize=(10, 6))
-    for backend in graph.keys():
-        plt.plot(sizes, graph[backend], label=backend)
-    plt.title("Matrix Multiplication Speed Test")
-    plt.xlabel("Matrix Size")
-    plt.ylabel("Time (s)")
-    plt.legend()
-    plt.show()
+#     # draw plot
+#     plt.figure(figsize=(10, 6))
+#     for backend in graph.keys():
+#         plt.plot(sizes, graph[backend], label=backend)
+#     plt.title("Matrix Multiplication Speed Test")
+#     plt.xlabel("Matrix Size")
+#     plt.ylabel("Time (s)")
+#     plt.legend()
+#     plt.show()
 
 if __name__ == "__main__":
     # Warmup
@@ -84,4 +79,4 @@ if __name__ == "__main__":
         for backend, runtime in stimes.items():
             print(f"    {backend}: {runtime:.5f}")
 
-    draw_plot(times)
+    # draw_plot(times)
