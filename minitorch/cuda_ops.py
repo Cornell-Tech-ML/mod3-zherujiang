@@ -563,26 +563,35 @@ def _tensor_matrix_multiply(
     # Task 3.4.
     acc = 0.0
 
-    # Move across shared dimension by block dim
+    # Move across the shared dimension of matrix a, b by BLOCK_DIM
+    # Each block calculate output positions within the BLOCK_DIM size
+    # Each block needs the entire row of a and entire column of b for calculation
+    # Each block copies and calculates BLOCK_DIM * BLOCK_DIM elements and does 1 + a_shape[-1] // BLOCK_DIM times
     for block_start in range(0, a_shape[-1], BLOCK_DIM):
-        # Copy into shared memory for a matrix
+        # Copy matrix a values into shared memory
+        # check if the position is within the bounds of matrix a
         if i < a_shape[-2] and block_start + pj < a_shape[-1]:
+            # Copy into shared memory from global memory
             a_shared[pi, pj] = a_storage[
                 batch * a_batch_stride
                 + i * a_strides[-2]
                 + (block_start + pj) * a_strides[-1]
             ]
         else:
+            # if position is out of bounds, set shared memory to 0
             a_shared[pi, pj] = 0.0
 
-        # Copy into shared memory for b matrix
+        # Copy matrix b values into shared memory
+        # check if the position is within the bounds of matrix b
         if block_start + pi < b_shape[-2] and j < b_shape[-1]:
+            # Copy into shared memory from global memory
             b_shared[pi, pj] = b_storage[
                 batch * b_batch_stride
                 + (block_start + pi) * b_strides[-2]
                 + j * b_strides[-1]
             ]
         else:
+            # if position is out of bounds, set shared memory to 0
             b_shared[pi, pj] = 0.0
 
         # Ensure all threads have finished copying to shared memory
