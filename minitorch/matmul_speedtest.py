@@ -2,8 +2,11 @@ import minitorch
 import time
 import numpy as np
 import matplotlib.pyplot as plt
+from typing import TYPE_CHECKING
 
-from .tensor import Tensor
+if TYPE_CHECKING:
+    from typing import Callable, Optional
+    from .tensor import Tensor
 
 FastTensorBackend = minitorch.TensorBackend(minitorch.FastOps)
 GPUBackend = minitorch.TensorBackend(minitorch.CudaOps)
