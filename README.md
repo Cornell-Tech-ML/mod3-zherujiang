@@ -691,7 +691,7 @@ Epoch  500  loss  4.847461218015787 correct 97
 Time per epoch:  0.5225029020309448s
 ```
 
-## Training Big Model - XOR Dataset
+## Big Model - XOR Dataset with 200 Hidden Size
 ### Training with CPU (FastOps)
 #### Model Parameters
 * Number of points: 150

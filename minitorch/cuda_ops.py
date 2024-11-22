@@ -564,9 +564,9 @@ def _tensor_matrix_multiply(
     acc = 0.0
 
     # Move across the shared dimension of matrix a, b by BLOCK_DIM
-    # Each block calculate output positions within the BLOCK_DIM size
-    # Each block needs the entire row of a and entire column of b for calculation
-    # Each block copies and calculates BLOCK_DIM * BLOCK_DIM elements and does 1 + a_shape[-1] // BLOCK_DIM times
+    # Each block calculate output positions within the BLOCK_DIM * BLOCK_DIM size
+    # To calculate c[i,j] we need the entire row of a and entire column of b
+    # Each block copies and calculates BLOCK_DIM * BLOCK_DIM elements and repeat math.ceil(a_shape[-1] / BLOCK_DIM) times
     for block_start in range(0, a_shape[-1], BLOCK_DIM):
         # Copy matrix a values into shared memory
         # check if the position is within the bounds of matrix a
