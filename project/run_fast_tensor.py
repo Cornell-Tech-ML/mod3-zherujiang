@@ -4,6 +4,8 @@ import numba
 
 import minitorch
 
+import time
+
 datasets = minitorch.datasets
 FastTensorBackend = minitorch.TensorBackend(minitorch.FastOps)
 if numba.cuda.is_available():
@@ -29,8 +31,11 @@ class Network(minitorch.Module):
         self.layer3 = Linear(hidden, 1, backend)
 
     def forward(self, x):
-        # TODO: Implement for Task 3.5.
-        raise NotImplementedError("Need to implement for Task 3.5")
+        # Task 3.5.
+        h1 = self.layer1.forward(x).relu()
+        h2 = self.layer2.forward(h1).relu()
+        out = self.layer3.forward(h2).sigmoid()
+        return out
 
 
 class Linear(minitorch.Module):
@@ -43,8 +48,10 @@ class Linear(minitorch.Module):
         self.out_size = out_size
 
     def forward(self, x):
-        # TODO: Implement for Task 3.5.
-        raise NotImplementedError("Need to implement for Task 3.5")
+        # Task 3.5.
+        # Matrix multiply input with weights and add bias
+        out = (x @ self.weights.value) + self.bias.value
+        return out
 
 
 class FastTrain:
@@ -62,10 +69,13 @@ class FastTrain:
     def train(self, data, learning_rate, max_epochs=500, log_fn=default_log_fn):
         self.model = Network(self.hidden_layers, self.backend)
         optim = minitorch.SGD(self.model.parameters(), learning_rate)
-        BATCH = 10
+        BATCH = 50
         losses = []
 
-        for epoch in range(max_epochs):
+        # add timer
+        start = time.time()
+
+        for epoch in range(1, max_epochs + 1):
             total_loss = 0.0
             c = list(zip(data.X, data.y))
             random.shuffle(c)
@@ -97,6 +107,10 @@ class FastTrain:
                 correct = int(((out.detach() > 0.5) == y2).sum()[0])
                 log_fn(epoch, total_loss, correct, losses)
 
+        # print time per epoch
+        end = time.time()
+        print(f"Time per epoch: {(end - start) / max_epochs}s")
+
 
 if __name__ == "__main__":
     import argparse
@@ -116,7 +130,7 @@ if __name__ == "__main__":
     if args.DATASET == "xor":
         data = minitorch.datasets["Xor"](PTS)
     elif args.DATASET == "simple":
-        data = minitorch.datasets["Simple"].simple(PTS)
+        data = minitorch.datasets["Simple"](PTS)
     elif args.DATASET == "split":
         data = minitorch.datasets["Split"](PTS)
 
